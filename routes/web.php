@@ -11,12 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-//Registrion
+
+//Sessions
+Route::get('/login', 'SessionsController@create');
+Route::post('/login', 'SessionsController@store');
+Route::get('/logout', 'SessionsController@destroy');
+
+
+//Registration
 Route::get('/register', 'RegistrationController@create');
 Route::post('/register', 'RegistrationController@store');
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Home
+Route::get('/', 'HomeController@index')->name('home');
