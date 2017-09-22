@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class RegistrationController extends Controller
 {
+    public function index()
+    {
+        $roles = Role::orderBy('display_name')->get();
+        return view('registration.index', compact('roles'));
+    }
     public function create()
     {
         $roles = Role::orderBy('display_name')->get();
@@ -25,15 +30,17 @@ class RegistrationController extends Controller
             'role' => 'required',
         ]);
 
+        $role = Role::find(request('role'));
+
         $user = User::firstOrCreate([
             'name' => request('name'),
             'email' => request('email'),
             'password' => bcrypt(request('password')),
-            'role' => request('role'),
+            'role' => $role->name,
         ]);
 
-        auth()->login($user);
+        $role->users()->attach($user->id);
 
-        return redirect()->home();
+        return back();
     }
 }

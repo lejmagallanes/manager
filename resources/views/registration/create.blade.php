@@ -8,7 +8,7 @@
                 <div class="panel-heading">Register</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="/register">
+                    <form class="form-horizontal" method="POST" action="/user">
                         {{ csrf_field() }}
 
                         <div class="form-group">
@@ -25,7 +25,7 @@
                             <div class="col-md-6" >
                                 <select class="form-control" name="role">
                                 @foreach ($roles as $role)
-                                <option value="{{ $role->name }}">{{ $role->display_name }}</option>
+                                <option value="{{ $role->id }}">{{ $role->display_name }}</option>
                                 @endforeach
                                 </select>
                             </div>

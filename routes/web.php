@@ -16,12 +16,13 @@
 //Sessions
 Route::get('/login', 'SessionsController@create');
 Route::post('/login', 'SessionsController@store');
-Route::get('/logout', 'SessionsController@destroy');
+Route::post('/logout', 'SessionsController@destroy');
 
 
 //Registration
-Route::get('/register', 'RegistrationController@create');
-Route::post('/register', 'RegistrationController@store');
+Route::get('/users/create', 'RegistrationController@create');
+Route::post('/users', 'RegistrationController@store');
+Route::get('/users', 'RegistrationController@index');
 
 //Home
 Route::get('/', 'HomeController@index')->name('home');
