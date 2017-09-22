@@ -25,3 +25,6 @@ Route::post('/register', 'RegistrationController@store');
 
 //Home
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/{role}/home', 'RolesController@index');
+
