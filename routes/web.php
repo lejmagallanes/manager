@@ -26,3 +26,9 @@ Route::get('/users', 'RegistrationController@index');
 
 //Home
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/{role}/home', 'RolesController@index');
+
+Route::get('/users', 'UsersController@index');
+Route::get('/users/{user}', 'UsersController@show');
+// Route::post('/posts/create', 'PostsController@create');

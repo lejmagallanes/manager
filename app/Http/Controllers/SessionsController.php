@@ -21,7 +21,11 @@ class SessionsController extends Controller
         if (! auth()->attempt(request(['email', 'password']))) {     
             return back();
         }
-        return redirect()->home();
+        else{
+        	$role = \Auth::user()->role;
+        	return redirect($role . '/home');
+        }
+        // return redirect()->home();
     }
 
     public function destroy()
