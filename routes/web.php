@@ -28,3 +28,5 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/{role}/home', 'RolesController@index');
 
+Route::get('/users', 'UsersController@index');
+Route::get('/users/{user}', 'UsersController@show');
