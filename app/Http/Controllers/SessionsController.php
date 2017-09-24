@@ -18,14 +18,24 @@ class SessionsController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate(request(), [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
         if (! auth()->attempt(request(['email', 'password']))) {     
-            return back();
+            return back()->withErrors([
+
+                'message' => 'Please check your credentials and try again.'
+
+            ]);
         }
-        else{
-        	$role = \Auth::user()->role;
-        	return redirect($role . '/home');
-        }
-        // return redirect()->home();
+        // else {
+        // 	// $role = \Auth::user()->role;
+        // 	return redirect('/');
+        // }
+        session()->flash('message', 'Your Successfully Sign In!');
+        return redirect()->home();
     }
 
     public function destroy()

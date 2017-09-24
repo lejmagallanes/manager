@@ -28,12 +28,16 @@
                     </button>
 
                     <!-- Branding Image -->
+                    
+                    @guest
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
-                    @guest
                     @else
-                    <a class="navbar-brand" href="/users">Staff</a>
+                    <a class="navbar-brand" href="/{{ Auth::user()->role }}">
+                        {{ config('app.name', 'Laravel') }}
+                    </a>
+                    <a class="navbar-brand" href="/{{ Auth::user()->role }}/users">Staff</a>
                     @endguest
                 </div>
 

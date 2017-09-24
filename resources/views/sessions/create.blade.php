@@ -1,42 +1,47 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="/login">
-                        {{ csrf_field() }}
-                        <div class="form-group">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" required autofocus>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @include ('layouts.head')
+</head>
+<body class="login">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-banner text-center">
+                    <h1><i class="fa fa-gears"></i> Aoma Admin</h1>
                 </div>
+                <div class="portlet portlet-green">
+                    <div class="portlet-heading login-heading">
+                        <div class="portlet-title">
+                            <h4><strong>Login to Aoma Admin!</strong>
+                            </h4>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="portlet-body">
+                        <form accept-charset="UTF-8" role="form" method="POST" action="/login">
+                            {{ csrf_field() }}
+                            <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="E-mail" name="email" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                </div>
+                                <br>
+                                <button class="btn btn-lg btn-green btn-block" type="submit">
+                                    Sign In 
+                                </button>
+                            </fieldset>
+                            <br>
+                        </form>
+                    </div>
+                </div>
+                @include ('layouts.errors')
             </div>
         </div>
-        @include ('layouts.errors')
     </div>
-</div>
-@endsection
+    @include ('layouts.script')
+</body>
+
+</html>

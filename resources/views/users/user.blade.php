@@ -1,5 +1,5 @@
  <div class="form-group">
- 	<form class="form-horizontal" method="POST" action="/users/">
+ 	<form class="form-horizontal" method="POST" action="/users">
  		{{ csrf_field() }}
 
  		<div class="form-group">
