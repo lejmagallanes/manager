@@ -8,12 +8,12 @@
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-banner text-center">
-                    <h1><i class="fa fa-gears"></i> Aoma Admin</h1>
+                    <h1><i class="fa fa-gears"></i> AOMA Admin</h1>
                 </div>
                 <div class="portlet portlet-green">
                     <div class="portlet-heading login-heading">
                         <div class="portlet-title">
-                            <h4><strong>Login to Aoma Admin!</strong>
+                            <h4><strong>Login to AOMA Admin!</strong>
                             </h4>
                         </div>
                         <div class="clearfix"></div>
