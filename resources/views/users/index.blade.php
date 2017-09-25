@@ -60,29 +60,39 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        @foreach ($users as $user)
-                        <tbody>
-                            <tr>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                @if (count($user->roles))
+                        @if (isset($users))                      
+                            @foreach ($users as $user)
+                            <tbody>
+                                <tr>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    @if (count($user->roles))
                                     @foreach($user->roles as $role)
-                                        <td>{{ $role->display_name }}</td>
+                                    <td>{{ $role->display_name }}</td>
                                     @endforeach
-                                @else
+                                    @else
                                     <td></td>
-                                @endif
-                                <td>
-                                    <a href="/users/{{ $user->id }}/edit">
-                                        <i class="fa fa-edit fa-fw fa-2x"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                        @endforeach
+                                    @endif
+                                    <td>
+                                        <a href="/users/{{ $user->id }}/edit">
+                                            <i class="fa fa-edit fa-fw fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            @endforeach
+                        @else
+                            @if ($noResults)
+                                {{ $noResults }}
+                            @endif
+                        @endif
                     </table>
                 </div>
-                {{ $users->links() }}
+
+                @if (isset($users))  
+                    {{ $users->links() }}
+                @endif
+
             </div>
         </div>
     </div>

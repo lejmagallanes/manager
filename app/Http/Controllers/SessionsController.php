@@ -34,7 +34,7 @@ class SessionsController extends Controller
         // 	// $role = \Auth::user()->role;
         // 	return redirect('/');
         // }
-        session()->flash('message', 'Your Successfully Sign In!');
+        session()->flash('message', "You are successfully signed in");
         return redirect()->home();
     }
 

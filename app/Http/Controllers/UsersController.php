@@ -17,7 +17,14 @@ class UsersController extends Controller
     {
         $users = User::where('name', 'like', "%$request->key%")
             ->orWhere('email', 'like', "%$request->key%")
+            ->orWhere('role', 'like', "%$request->key%")
             ->paginate(10);
+        if (sizeof($users) == 0) {
+            $noResults = " Sorry, no matches found";
+
+            return view('users.index', compact('noResults'));
+            dd($users);
+        }
 
         return view('users.index', compact('users'));
     }
