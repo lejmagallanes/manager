@@ -12,6 +12,9 @@
                     <h5>Login Plssss!!!</h5>
                     @else
                     <h5>Your Login</h5>
+                    @foreach (Auth::user()->roles as $role)
+                        <strong>{{ $role->display_name }}&nbsp&nbsp</strong>
+                    @endforeach
                     @endif
                 </div>
             </div>

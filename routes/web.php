@@ -14,20 +14,22 @@
 
 
 //Sessions
-Route::get('/login', 'SessionsController@create');
 Route::post('/login', 'SessionsController@store');
-Route::get('/logout', 'SessionsController@destroy');
+Route::post('/logout', 'SessionsController@destroy');
 
 
-//Registration
-Route::get('/register', 'RegistrationController@create');
-Route::post('/register', 'RegistrationController@store');
+// Registration
+// Route::post('/users', 'RegistrationController@store');
+// Route::get('/users', 'RegistrationController@index');
 
 //Home
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/{role}/home', 'RolesController@index');
+// Route::get('/{role}', 'RolesController@index');
 
 Route::get('/users', 'UsersController@index');
-Route::get('/users/{user}', 'UsersController@show');
-// Route::post('/posts/create', 'PostsController@create');
+Route::post('/users/search', 'UsersController@search');
+Route::get('/users/create', 'UsersController@create');
+Route::post('/users', 'UsersController@store');
+Route::get('/users/{user}/edit', 'UsersController@edit');
+Route::patch('/users/{user}', 'UsersController@update');

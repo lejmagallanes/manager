@@ -23,6 +23,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        if (\Auth::user()) {
+            return view('dashboard.index');
+        }
+
+        return view('sessions.create');   
     }
 }

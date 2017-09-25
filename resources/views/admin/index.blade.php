@@ -5,9 +5,9 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">{{ Auth::user()->role }}</div>
+                <div class="panel-heading"></div>
                 <div class="panel-body">
-                    <a href="/users">Show All Users</a>
+                    <a href="{{ Auth::user()->role }}/users">Show All Users</a>
                 </div>
             </div>
         </div>

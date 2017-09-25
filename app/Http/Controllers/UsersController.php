@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use App\User;
 use App\Role;
 use Illuminate\Http\Request;
@@ -12,6 +13,15 @@ class UsersController extends Controller
     {
         $this->middleware('auth');
     }
+
+    public function search(Request $request)
+    {
+        $users = User::where('name', 'like', "%$request->key%")
+            ->orWhere('email', 'like', "%$request->key%")
+            ->paginate(10);
+
+        return view('users.index', compact('users'));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +29,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::latest()
-            ->get();
+        $users = User::orderBy('name')->paginate(10);
+
         return view('users.index', compact('users'));
     }
 
@@ -31,7 +41,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::orderBy('display_name')->get();
+        return view('users.create', compact('roles'));
     }
 
     /**
@@ -42,7 +53,27 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(request(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|confirmed',
+            'role' => 'required',
+        ]);
+
+        $role = Role::find(request('role'));
+
+        $user = User::firstOrCreate([
+            'name' => request('name'),
+            'email' => request('email'),
+            'password' => bcrypt(request('password')),
+            'role' => $role->name,
+        ]);
+
+        $role->users()->attach($user->id);
+
+        session()->flash('message', 'Successfully Added!!!');
+
+        return back();
     }
 
     /**
@@ -63,9 +94,13 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($user)
     {
-        //
+        $users = User::find($user);
+
+        $roles = Role::orderBy('display_name')->get();
+
+        return view('users.edit', compact('users', 'roles'));
     }
 
     /**
@@ -77,7 +112,30 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate(request(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'role' => 'required',
+        ]);
+
+        $role = Role::find(request('role'));
+
+        User::where('id', $id)->update([
+            'name' => request('name'),
+            'role' => $role->name,
+            'email' => request('email'),
+        ]);
+
+        $user = User::find($id);
+
+        if (count($user->roles)) {
+            $user->roles()->detach();
+        }
+        $role->users()->attach($user->id);
+
+        session()->flash('message', 'Successfully Modified!!!');
+
+        return back();
     }
 
     /**

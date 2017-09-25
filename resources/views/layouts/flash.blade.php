@@ -1,9 +1,6 @@
 @if ($flash = session('message'))
-
-    <div id="flash-message" class="alert alert-success" role="alert">
-
+    <div class="alert alert-info alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         {{ $flash }}
-
     </div>
-
 @endif
