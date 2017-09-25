@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Role;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -52,7 +53,8 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        return view('user.show', compact('user'));
+        $roles = Role::orderBy('display_name')->get();
+        return view('users.show', compact('roles', 'user'));
     }
 
     /**
