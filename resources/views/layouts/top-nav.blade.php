@@ -20,7 +20,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li>
-                        <a href="profile.html">
+                        <a href="/users/{{ Auth::user()->id }}/edit">
                             <i class="fa fa-user"></i> My Profile
                         </a>
                     </li>

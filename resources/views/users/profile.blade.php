@@ -27,21 +27,19 @@
 </div>
 <div class="row">
     <div class="col-lg-6">
-        <div class="form-group">
-            <form method="POST" action="/users/search">
-                <div class="input-group">
-                    {{ csrf_field() }}
-                    <input type="text" class="form-control" name="key" placeholder="Search...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit">Search</button>
-                    </span>
-                </div>
-            </form>
-        </div>
+        <form method="POST" action="/users/search">
+            <div class="input-group">
+                {{ csrf_field() }}
+                <input type="text" class="form-control" name="key" placeholder="Search...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Search</button>
+                </span>
+            </div>
+        </form>
     </div><br>
 </div>
 <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-4">
         <div class="portlet portlet-default">
             <div class="portlet-heading">
                 <div class="portlet-title">

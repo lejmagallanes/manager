@@ -14,6 +14,7 @@
 
 
 //Sessions
+Route::get('/login', 'SessionsController@store');
 Route::post('/login', 'SessionsController@store');
 Route::post('/logout', 'SessionsController@destroy');
 
@@ -33,3 +34,7 @@ Route::get('/users/create', 'UsersController@create');
 Route::post('/users', 'UsersController@store');
 Route::get('/users/{user}/edit', 'UsersController@edit');
 Route::patch('/users/{user}', 'UsersController@update');
+
+//Profile
+Route::get('/profile/{user}', 'ProfilesController@index');
+
