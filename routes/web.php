@@ -13,6 +13,13 @@
 
 Auth::routes();
 
+
+// Sessions
+// Route::get('/login', 'SessionsController@store');
+// Route::post('/login', 'SessionsController@store');
+// Route::post('/logout', 'SessionsController@destroy');
+
+
 //Home
 Route::get('/', 'HomeController@index')->name('home');
 
@@ -24,7 +31,8 @@ Route::get('/create/users', 'UsersController@create');
 Route::post('/users', 'UsersController@store');
 Route::get('/users/{user}/edit', 'UsersController@edit');
 Route::patch('/users/{user}', 'UsersController@update');
-Route::get('/users/{user}', 'UsersController@show');
+
+// Route::get('/users/{user}', 'UsersController@show');
 
 //Permissions
 Route::get('/permissions', 'PermissionsController@index');
@@ -42,4 +50,6 @@ Route::get('/accounting/extra', 'AccountingController@extra');
 
 
 
+//Profile
+// Route::get('/profile/{user}', 'ProfilesController@index');
 

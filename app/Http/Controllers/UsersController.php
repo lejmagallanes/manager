@@ -17,8 +17,20 @@ class UsersController extends Controller
     public function search(Request $request)
     {
         $users = User::where('name', 'like', "%$request->key%")
+<<<<<<< HEAD
             ->orderBy('name')
             ->paginate(12);
+=======
+            ->orWhere('email', 'like', "%$request->key%")
+            ->orWhere('role', 'like', "%$request->key%")
+            ->paginate(10);
+        if (sizeof($users) == 0) {
+            $noResults = " Sorry, no matches found";
+
+            return view('users.index', compact('noResults'));
+            dd($users);
+        }
+>>>>>>> b180ae14ecc937cbbc24e45d7f70c1edd01edab1
 
         return view('users.index', compact('users'));
     }
@@ -85,8 +97,13 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
+<<<<<<< HEAD
         $permissions = Permission::orderBy('name')->get();
         return view('users.show', compact('user', 'permissions'));
+=======
+        $roles = Role::orderBy('display_name')->get();
+        return view('users.show', compact('roles', 'user'));
+>>>>>>> b180ae14ecc937cbbc24e45d7f70c1edd01edab1
     }
 
     /**

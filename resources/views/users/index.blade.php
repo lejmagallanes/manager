@@ -27,15 +27,17 @@
 </div>
 <div class="row">
     <div class="col-lg-6">
-        <form method="POST" action="/users/search">
-            <div class="input-group">
-                {{ csrf_field() }}
-                <input type="text" class="form-control" name="key" placeholder="Search...">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="submit">Search</button>
-                </span>
-            </div>
-        </form>
+        <div class="form-group">
+            <form method="POST" action="/users/search">
+                <div class="input-group">
+                    {{ csrf_field() }}
+                    <input type="text" class="form-control" name="key" placeholder="Search...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Search</button>
+                    </span>
+                </div>
+            </form>
+        </div>
     </div><br>
 </div>
 <div class="row">
@@ -54,7 +56,7 @@
                     </div>
                     <br>
                     <a href="/users/{{ $user->id }}" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
-                </div>
+                </div>   
             </div>
         </div>
         @endforeach
