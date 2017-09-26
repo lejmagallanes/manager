@@ -5,19 +5,19 @@
     <div class="col-lg-12">
         <div class="page-title">
             <h1>
-                Users List
+                Roles List                
             </h1>
             <ol class="breadcrumb">
                 <li>
                     <i class="fa fa-dashboard"></i>  <a href="/">Dashboard</a>
                 </li>
                 <li class="active">
-                    Users List
+                    Roles
                 </li>
                 <li class="pull-right">
-                    <a href="create/users">
+                    <a href="">
                         <div class="btn btn-green btn-square date-picker">
-                            <strong>Create New User</strong>
+                            <strong>Create New Role</strong>
                         </div>
                     </a>
                 </li>
@@ -27,7 +27,7 @@
 </div>
 <div class="row">
     <div class="col-lg-6">
-        <form method="POST" action="/users/search">
+        <form method="POST" action="/permissions/search">
             <div class="input-group">
                 {{ csrf_field() }}
                 <input type="text" class="form-control" name="key" placeholder="Search...">
@@ -40,20 +40,20 @@
 </div>
 <div class="row">
     <div class="col-lg-6">
-        @foreach ($users as $user)
+        @foreach ($roles as $role)
         <div class="col-lg-2 col-sm-3">
             <div class="circle-tile">
-                <a href="/users/{{ $user->id }}">
+                <a href="/permissions/{{ $role->id }}">
                     <div class="circle-tile-heading dark-blue">
-                        <i class="fa fa-user fa-fw fa-3x"></i>
+                        <i class="fa fa-lock fa-fw fa-3x"></i>
                     </div>
                 </a>
                 <div class="circle-tile-content dark-blue">
                     <div class="circle-tile-description text-faded">
-                        {{ $user->name }}
+                        {{ $role->display_name }}
                     </div>
                     <br>
-                    <a href="/users/{{ $user->id }}" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
+                    <a href="/permissions/{{ $role->id }}" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
                 </div>
             </div>
         </div>
@@ -62,7 +62,7 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        {{ $users->links() }}
+        {{ $roles->links() }}
     </div>
 </div>
 

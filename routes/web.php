@@ -11,25 +11,35 @@
 |
 */
 
-
-
-//Sessions
-Route::post('/login', 'SessionsController@store');
-Route::post('/logout', 'SessionsController@destroy');
-
-
-// Registration
-// Route::post('/users', 'RegistrationController@store');
-// Route::get('/users', 'RegistrationController@index');
+Auth::routes();
 
 //Home
 Route::get('/', 'HomeController@index')->name('home');
 
 // Route::get('/{role}', 'RolesController@index');
 
-Route::get('/users', 'UsersController@index');
 Route::post('/users/search', 'UsersController@search');
-Route::get('/users/create', 'UsersController@create');
+Route::get('/users', 'UsersController@index');
+Route::get('/create/users', 'UsersController@create');
 Route::post('/users', 'UsersController@store');
 Route::get('/users/{user}/edit', 'UsersController@edit');
 Route::patch('/users/{user}', 'UsersController@update');
+Route::get('/users/{user}', 'UsersController@show');
+
+//Permissions
+Route::get('/permissions', 'PermissionsController@index');
+Route::post('/permissions/search', 'PermissionsController@search');
+Route::get('/permissions/{role}', 'PermissionsController@show');
+Route::get('/permissions/{role}/delete/{permission}', 'PermissionsController@destroy');
+Route::patch('/permissions/{role}/permission', 'PermissionsController@addPermission');
+
+
+//Accounting
+Route::get('/accounting', 'AccountingController@index');
+Route::get('/accounting/report', 'AccountingController@report');
+Route::get('/accounting/graph', 'AccountingController@graph');
+Route::get('/accounting/extra', 'AccountingController@extra');
+
+
+
+

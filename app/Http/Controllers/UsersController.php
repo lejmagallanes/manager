@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Role;
 use App\User;
+use App\Permission;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -16,8 +17,8 @@ class UsersController extends Controller
     public function search(Request $request)
     {
         $users = User::where('name', 'like', "%$request->key%")
-            ->orWhere('email', 'like', "%$request->key%")
-            ->paginate(10);
+            ->orderBy('name')
+            ->paginate(12);
 
         return view('users.index', compact('users'));
     }
@@ -28,7 +29,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('name')->paginate(10);
+        $users = User::orderBy('name')->paginate(12);
 
         return view('users.index', compact('users'));
     }
@@ -41,6 +42,7 @@ class UsersController extends Controller
     public function create()
     {
         $roles = Role::orderBy('display_name')->get();
+
         return view('users.create', compact('roles'));
     }
 
@@ -83,7 +85,8 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        return view('user.show', compact('user'));
+        $permissions = Permission::orderBy('name')->get();
+        return view('users.show', compact('user', 'permissions'));
     }
 
     /**
