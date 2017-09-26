@@ -36,5 +36,11 @@ Route::get('/users/{user}/edit', 'UsersController@edit');
 Route::patch('/users/{user}', 'UsersController@update');
 
 //Profile
-Route::get('/profile/{user}', 'ProfilesController@index');
+// Route::get('/profile/{user}', 'ProfilesController@index');
+
+//Activity Log
+Route::get('/activity_log', 'ActivityLogsController@index');
+Route::get('/activity_log/{user}', 'ActivityLogsController@user');
+
+
 

@@ -4,10 +4,12 @@ namespace App;
 
 use App\Role;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    use LogsActivity;
     use Notifiable;
 
     /**
@@ -16,6 +18,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'name', 'email', 'password','role'
+    ];
+
+    protected static $logAttributes = [
         'name', 'email', 'password','role'
     ];
 
@@ -28,13 +34,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
-    }
-
     public function roles()
     {
         return $this->belongsToMany(Role::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'name';
     }
 }

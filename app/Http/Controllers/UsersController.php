@@ -23,7 +23,6 @@ class UsersController extends Controller
             $noResults = " Sorry, no matches found";
 
             return view('users.index', compact('noResults'));
-            dd($users);
         }
 
         return view('users.index', compact('users'));
@@ -36,12 +35,11 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::orderBy('name')->paginate(10);
-
         return view('users.index', compact('users'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new resource.   
      *
      * @return \Illuminate\Http\Response
      */

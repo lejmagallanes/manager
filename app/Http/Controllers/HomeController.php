@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Activitylog\Models\Activity;
 
 class HomeController extends Controller
 {
@@ -24,7 +25,8 @@ class HomeController extends Controller
     public function index()
     {
         if (\Auth::user()) {
-            return view('dashboard.index');
+            $latestLog = Activity::latest()->first();
+            return view('dashboard.index', compact('latestLog'));
         }
 
         return view('sessions.create');   
