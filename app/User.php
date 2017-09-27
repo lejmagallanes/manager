@@ -24,6 +24,12 @@ class User extends Authenticatable
     protected static $logAttributes = [
         'name', 'email', 'password','role'
     ];
+    
+    public function getDescriptionForEvent(string $eventName): string
+    {
+        return "This model has been {$eventName}";
+    }
+
 
     /**
      * The attributes that should be hidden for arrays.

@@ -12,7 +12,7 @@
                     <i class="fa fa-dashboard"></i>  <a href="/">Dashboard</a>
                 </li>
                 <li class="active">
-                    <a href="/activity_log">Activity Log</a>
+                    <a href="/activity_logs">Activity Log</a>
                 </li>
                 <li class="active">
                     @foreach ($name as $person)

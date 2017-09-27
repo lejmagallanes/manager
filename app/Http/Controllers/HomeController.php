@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except(['index']);
+        $this->middleware('auth');
     }
 
     /**
@@ -28,7 +28,6 @@ class HomeController extends Controller
             $latestLog = Activity::latest()->first();
             return view('dashboard.index', compact('latestLog'));
         }
-
         return view('sessions.create');   
     }
 }

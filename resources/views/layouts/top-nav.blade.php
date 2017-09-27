@@ -20,13 +20,13 @@
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li>
-                        <a href="/users/{{ Auth::user()->id }}/edit">
+                        <a href="/users/{{ Auth::user()->id }}">
                             <i class="fa fa-user"></i> My Profile
                         </a>
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a class="logout_open" href="/logout">
+                        <a class="logout_open" href="{{ route('logout') }}">
                             <i class="fa fa-sign-out"></i> Logout
                             <strong>{{ Auth::user()->name }}</strong>
                         </a>

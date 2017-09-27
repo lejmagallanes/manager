@@ -11,36 +11,43 @@
 |
 */
 
+Auth::routes();
 
 
-//Sessions
-Route::get('/login', 'SessionsController@store');
-Route::post('/login', 'SessionsController@store');
-Route::post('/logout', 'SessionsController@destroy');
+// Sessions
+// Route::get('/login', 'SessionsController@store');
+// Route::post('/login', 'SessionsController@store');
+// Route::post('/logout', 'SessionsController@destroy');
 
-
-// Registration
-// Route::post('/users', 'RegistrationController@store');
-// Route::get('/users', 'RegistrationController@index');
 
 //Home
 Route::get('/', 'HomeController@index')->name('home');
 
 // Route::get('/{role}', 'RolesController@index');
 
-Route::get('/users', 'UsersController@index');
 Route::post('/users/search', 'UsersController@search');
+Route::get('/users', 'UsersController@index');
 Route::get('/users/create', 'UsersController@create');
 Route::post('/users', 'UsersController@store');
 Route::get('/users/{user}/edit', 'UsersController@edit');
 Route::patch('/users/{user}', 'UsersController@update');
 
-//Profile
-// Route::get('/profile/{user}', 'ProfilesController@index');
+Route::get('/users/{user}', 'UsersController@show');
+
+//Permissions
+Route::get('/permissions', 'PermissionsController@index');
+Route::post('/permissions/search', 'PermissionsController@search');
+Route::get('/permissions/{role}', 'PermissionsController@show');
+Route::get('/permissions/{role}/delete/{permission}', 'PermissionsController@destroy');
+Route::patch('/permissions/{role}/permission', 'PermissionsController@addPermission');
+
+
+//Accounting
+Route::get('/accounting', 'AccountingController@index');
+Route::get('/accounting/report', 'AccountingController@report');
+Route::get('/accounting/graph', 'AccountingController@graph');
+Route::get('/accounting/extra', 'AccountingController@extra');
 
 //Activity Log
-Route::get('/activity_log', 'ActivityLogsController@index');
-Route::get('/activity_log/{user}', 'ActivityLogsController@user');
-
-
-
+Route::get('/activity_logs', 'ActivityLogsController@index');
+Route::get('/activity_logs/{user}', 'ActivityLogsController@user');

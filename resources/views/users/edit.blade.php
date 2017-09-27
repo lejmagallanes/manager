@@ -11,6 +11,13 @@
                 <li><i class="fa fa-dashboard"></i>  <a href="/">Dashboard</a>
                 </li>
                 <li class="active">Edit User</li>
+                <li class="pull-right">
+                    <a href="/users">
+                        <div class="btn btn-green btn-square date-picker">
+                            <strong>Users List</strong>
+                        </div>
+                    </a>
+                </li>
             </ol>
         </div>
     </div>

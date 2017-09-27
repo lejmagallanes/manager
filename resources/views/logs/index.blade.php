@@ -43,7 +43,7 @@
                                 <td>{{ $act->created_at->diffForHumans() }}</td>
                                 <td>{{ $act->description }}</td>
                                 <td>
-                                    <a href="/activity_log/{{$act->causer['id']}}">{{ $act->causer['name'] }}</a>
+                                    <a href="/activity_logs/{{$act->causer['id']}}">{{ $act->causer['name'] }}</a>
                                 </td>
                             </tr>
                             @endforeach

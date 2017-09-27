@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Role;
 use App\User;
+use App\Permission;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -18,10 +19,11 @@ class UsersController extends Controller
         $users = User::where('name', 'like', "%$request->key%")
             ->orWhere('email', 'like', "%$request->key%")
             ->orWhere('role', 'like', "%$request->key%")
-            ->paginate(10);
+            ->orderBy('name')
+            ->paginate(12);
+
         if (sizeof($users) == 0) {
             $noResults = " Sorry, no matches found";
-
             return view('users.index', compact('noResults'));
         }
 
@@ -34,7 +36,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('name')->paginate(10);
+
+        $users = User::orderBy('name')->paginate(12);
+
         return view('users.index', compact('users'));
     }
 
@@ -46,6 +50,7 @@ class UsersController extends Controller
     public function create()
     {
         $roles = Role::orderBy('display_name')->get();
+
         return view('users.create', compact('roles'));
     }
 
@@ -86,10 +91,13 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($user)
     {
-        $roles = Role::orderBy('display_name')->get();
-        return view('users.show', compact('roles', 'user'));
+        $user = User::find($user);
+        $permissions = Permission::orderBy('name')->get();
+        return view('users.show', compact('user', 'permissions'));
+        // $roles = Role::orderBy('display_name')->get();
+        // return view('users.show', compact('roles', 'user'));
     }
 
     /**
